@@ -9,7 +9,7 @@
 #include "src/UI/Pipette.h"
 #include "src/UI/BackgroundTexture.h"
 #include "src/UI/Toolbar.h"
-#include "src/Misc/Clipboard.h"
+#include "src/Clipboard/Clipboard.h"
 
 namespace UI {
 
@@ -121,7 +121,7 @@ namespace UI {
             glfwSetInputMode(instance.window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
             ImGui::GetIO().ConfigFlags &= ~ImGuiConfigFlags_NoMouseCursorChange;
             Application::application().module<Toolbar>()->set_busy(false);
-            Application::application().module<Misc::Clipboard>()->copy_text(hex);
+            Application::application().module<Clipboard::Clipboard>()->copy_text(hex);
         }
     }
 }

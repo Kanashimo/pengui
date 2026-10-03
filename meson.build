@@ -23,8 +23,7 @@ sources = files(
     'src/UI/BackgroundTexture.cpp',
     'src/UI/Crop.cpp',
     'src/UI/Toolbar.cpp',
-    'src/UI/Pipette.cpp',
-    'src/Misc/Clipboard.cpp'
+    'src/UI/Pipette.cpp'
 )
 
 shaders = files(

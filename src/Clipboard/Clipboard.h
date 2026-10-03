@@ -5,7 +5,7 @@
 #include <stdexcept>
 #include <string>
 
-namespace Misc {
+namespace Clipboard {
 
     class Clipboard : public Module
     {

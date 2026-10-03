@@ -10,13 +10,13 @@
 #include "src/UI/Toolbar.h"
 #include "src/UI/Fonts.h"
 #include "src/UI/Pipette.h"
-#include "src/Misc/Clipboard.h"
+#include "src/Clipboard/Clipboard.h"
 
 int main()
 {
     try {
         Application app;
-        app.attach<Misc::Clipboard>();
+        app.attach<Clipboard::Clipboard>();
         app.attach<UI::Fonts>();
         app.attach<UI::BackgroundTexture>();
         app.attach<UI::Toolbar>();
