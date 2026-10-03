@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <imgui.h>
+#include <string>
 
 #include "src/Module.h"
 
@@ -16,6 +17,7 @@ namespace UI {
         private:
             ImVec2 pos;
             std::vector<unsigned char> pixel;
+            std::string hex;
             bool dragging = false;
     };
 

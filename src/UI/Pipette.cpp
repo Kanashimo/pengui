@@ -1,11 +1,15 @@
 #include <imgui.h>
 #include <GLFW/glfw3.h>
 #include <cstdint>
+#include <format>
+#include <sys/types.h>
+#include <vulkan/vulkan_core.h>
 
 #include "src/Application.h"
 #include "src/UI/Pipette.h"
 #include "src/UI/BackgroundTexture.h"
 #include "src/UI/Toolbar.h"
+#include "src/Misc/Clipboard.h"
 
 namespace UI {
 
@@ -92,14 +96,6 @@ namespace UI {
                 1.0f
             );
         }
-
-        if (ImGui::IsMouseReleased(ImGuiMouseButton_Left))
-        {
-            dragging = false;
-            glfwSetInputMode(instance.window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-            ImGui::GetIO().ConfigFlags &= ~ImGuiConfigFlags_NoMouseCursorChange;
-            Application::application().module<Toolbar>()->set_busy(false);
-        }
     }
 
     void Pipette::on_after_render(Instance &instance)
@@ -116,5 +112,16 @@ namespace UI {
             gl::GL_UNSIGNED_BYTE,
             pixel.data()
         );
+
+        hex = std::format("#{:02X}{:02X}{:02X}", pixel[0], pixel[1], pixel[2]);
+
+        if (ImGui::IsMouseReleased(ImGuiMouseButton_Left))
+        {
+            dragging = false;
+            glfwSetInputMode(instance.window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+            ImGui::GetIO().ConfigFlags &= ~ImGuiConfigFlags_NoMouseCursorChange;
+            Application::application().module<Toolbar>()->set_busy(false);
+            Application::application().module<Misc::Clipboard>()->copy_text(hex);
+        }
     }
 }
