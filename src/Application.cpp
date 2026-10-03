@@ -48,7 +48,7 @@ Application::Application() : monitors(screenCapture.monitors())
         GLFWwindow *window = glfwCreateWindow(
             monitor->width,
             monitor->height,
-            "yasu",
+            "pengui",
             glfw_monitor,
             nullptr
         );

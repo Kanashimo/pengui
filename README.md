@@ -1,4 +1,4 @@
-# yasu
+# pengui
 Bloat-free screenshot utility
 
 ## Building from source

@@ -3,7 +3,7 @@
 #include "glib.h"
 
 
-#define SCREENCAPTURE_ERROR yasu_screencapture_error_quark()
+#define SCREENCAPTURE_ERROR pengui_screencapture_error_quark()
 
 enum ScreenCaptureError
 {
@@ -14,4 +14,4 @@ enum ScreenCaptureError
     SCREENCAPTURE_ERROR_SCREENSHOT_FAILED
 };
 
-GQuark yasu_screencapture_error_quark();
+GQuark pengui_screencapture_error_quark();

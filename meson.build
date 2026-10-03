@@ -1,4 +1,4 @@
-project('yasu', 'cpp', default_options: ['cpp_std=c++20'])
+project('pengui', 'cpp', default_options: ['cpp_std=c++20'])
 
 add_project_arguments(
   '-DGLFW_INCLUDE_NONE',
@@ -73,7 +73,7 @@ roboto_light = custom_target(
 )
 
 executable(
-    'yasu',
+    'pengui',
     sources,
     roboto_regular,
     roboto_bold,
