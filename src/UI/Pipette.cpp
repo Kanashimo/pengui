@@ -2,8 +2,6 @@
 #include <GLFW/glfw3.h>
 #include <cstdint>
 #include <format>
-#include <sys/types.h>
-#include <vulkan/vulkan_core.h>
 
 #include "src/Application.h"
 #include "src/UI/Pipette.h"
