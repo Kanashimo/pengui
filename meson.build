@@ -42,7 +42,7 @@ find_program('cp', required: true)
 find_program('mkdir', required: true)
 
 foreach f : shaders
-  run_command(bash, files('tools/copy_shader.sh'), meson.project_build_root(), fs.parent(f), fs.name(f), check: true)
+  run_command(bash, files('scripts/copy_shader.sh'), meson.project_build_root(), fs.parent(f), fs.name(f), check: true)
 endforeach
 
 ## VERY VERY VERY VERY TEMPORARY SOLUTION, I DON'T HAVE TIME FOR THIS
@@ -50,28 +50,28 @@ roboto_regular = custom_target(
   'build_fonts1',
   input: 'src/Fonts/Roboto-Regular.ttf',
   output: 'Roboto_Regular.h',
-  command: [bash, files('tools/build_font.sh'), '@INPUT@', '@OUTPUT@'],
+  command: [bash, files('scripts/build_font.sh'), '@INPUT@', '@OUTPUT@'],
 )
 
 roboto_bold = custom_target(
   'build_fonts2',
   input: 'src/Fonts/Roboto-Bold.ttf',
   output: 'Roboto_Bold.h',
-  command: [bash, files('tools/build_font.sh'), '@INPUT@', '@OUTPUT@'],
+  command: [bash, files('scripts/build_font.sh'), '@INPUT@', '@OUTPUT@'],
 )
 
 roboto_light = custom_target(
   'build_fonts3',
   input: 'src/Fonts/Roboto-Light.ttf',
   output: 'Roboto_Light.h',
-  command: [bash, files('tools/build_font.sh'), '@INPUT@', '@OUTPUT@'],
+  command: [bash, files('scripts/build_font.sh'), '@INPUT@', '@OUTPUT@'],
 )
 
 roboto_light = custom_target(
   'build_fonts4',
   input: 'src/Fonts/Icons.ttf',
   output: 'Icons.h',
-  command: [bash, files('tools/build_font.sh'), '@INPUT@', '@OUTPUT@'],
+  command: [bash, files('scripts/build_font.sh'), '@INPUT@', '@OUTPUT@'],
 )
 
 executable(
