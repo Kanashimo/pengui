@@ -29,8 +29,12 @@ namespace Clipboard {
                     throw std::runtime_error("Cannot get wl-copy/xclip");
                 }
 
-                fwrite(text.data(), 1, text.size(), pipe);
-                pclose(pipe);
+                size_t write = fwrite(text.data(), 1, text.size(), pipe);
+                int status = pclose(pipe);
+
+                if (write != text.size()) throw std::runtime_error("Failet to write clipboard");
+                if (status == -1) throw std::runtime_error("Something went wrong with clipboard, check if wl-copy or xclip is installed");
+                if (!WIFEXITED(status) || WEXITSTATUS(status) != 0) throw std::runtime_error("Something went wrong with clipboard, check if wl-copy or xclip is installed");
             }
 
             void copy_image(guchar *framebuffer)
