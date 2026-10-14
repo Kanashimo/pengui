@@ -21,10 +21,10 @@ namespace UI {
         gl::glGenVertexArrays(1, &array);
         auto loader = std::make_unique<ShaderLoader>();
         loader->load(gl::GL_VERTEX_SHADER, {
-            "vert.glsl",
+            "Glow/vert.glsl",
         });
         loader->load(gl::GL_FRAGMENT_SHADER, {
-            "frag.glsl"
+            "Glow/frag.glsl"
         });
         // TODO: fix segfault on comp err
         loader->compile();

@@ -28,20 +28,22 @@ sources = files(
 )
 
 shaders = files(
-  'src/Shaders/vert.glsl',
-  'src/Shaders/frag.glsl'
+  'src/Shaders/Glow/vert.glsl',
+  'src/Shaders/Glow/frag.glsl'
 )
 
 fs = import('fs')
-
-foreach f : shaders
-  fs.copyfile(f)
-endforeach
 
 bash = find_program('bash', required: true)
 
 find_program('xxd', required: true)
 find_program('sed', required: true)
+find_program('cp', required: true)
+find_program('mkdir', required: true)
+
+foreach f : shaders
+  run_command(bash, files('tools/copy_shader.sh'), meson.project_build_root(), fs.parent(f), fs.name(f), check: true)
+endforeach
 
 ## VERY VERY VERY VERY TEMPORARY SOLUTION, I DON'T HAVE TIME FOR THIS
 roboto_regular = custom_target(
