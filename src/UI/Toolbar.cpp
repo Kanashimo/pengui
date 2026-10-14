@@ -63,7 +63,7 @@ namespace UI {
 
         render_button(OPTION_CROP, ICON_CROP, "Crop");
         ImGui::SameLine();
-        // render_button(OPTION_RULER, ICON_RULER, "Ruler");
+        render_button(OPTION_RULER, ICON_RULER, "Ruler");
         ImGui::SameLine();
         render_button(OPTION_PIPETTE, ICON_PIPETTE, "Pipette");
         ImGui::SameLine();

@@ -11,6 +11,7 @@
 #include "src/UI/Fonts.h"
 #include "src/UI/Pipette.h"
 #include "src/Clipboard/Clipboard.h"
+#include "src/UI/Ruler.h"
 
 int main()
 {
@@ -24,6 +25,7 @@ int main()
         app.attach<UI::Debug>();
         app.attach<UI::Crop>();
         app.attach<UI::Pipette>();
+        app.attach<UI::Ruler>();
         app.run();
     } catch (std::runtime_error &e) {
         std::cerr << e.what() << std::endl;
