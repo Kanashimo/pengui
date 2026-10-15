@@ -1,4 +1,4 @@
-#version 330 core
+#version 330
 #define PADDING_VALUE 250.0f
 
 uniform vec2 uScreenResolution;
