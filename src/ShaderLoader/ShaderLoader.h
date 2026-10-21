@@ -8,6 +8,7 @@
 typedef std::string ShaderSource;
 typedef gl::GLuint Shader;
 typedef gl::GLuint ShaderProgram;
+typedef gl::GLuint ShaderArray;
 typedef gl::GLint ShaderStatus;
 typedef gl::GLenum GLError;
 typedef gl::GLenum ShaderType;

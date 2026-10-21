@@ -28,7 +28,7 @@ namespace UI {
             GLFWwindow* targeted_window;
             gl::GLuint *texture;
 
-            std::unordered_map<Instance*, gl::GLuint> arrays;
+            std::unordered_map<Instance*, ShaderArray> arrays;
             std::unordered_map<Instance*, std::unique_ptr<ShaderLoader>> programs;
 
             double begin_time;

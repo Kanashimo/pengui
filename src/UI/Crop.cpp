@@ -17,7 +17,7 @@ namespace UI {
 
     void Crop::on_instance_init(Instance &instance)
     {
-        gl::GLuint array;
+        ShaderArray array;
         gl::glGenVertexArrays(1, &array);
         auto loader = std::make_unique<ShaderLoader>();
         loader->load(gl::GL_VERTEX_SHADER, {
@@ -124,7 +124,7 @@ namespace UI {
         }
 
         programs[&instance]->use();
-        gl::GLuint &array = arrays[&instance];
+        ShaderArray &array = arrays[&instance];
 
         gl::glBindVertexArray(array);
 
