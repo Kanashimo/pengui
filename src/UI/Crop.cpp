@@ -7,6 +7,7 @@
 
 #include "glbinding/gl/functions.h"
 #include "src/Config/Config.h"
+#include "src/Storage/Storage.h"
 #include "src/UI/Toolbar.h"
 #include "src/Application.h"
 #include "src/ShaderLoader/ShaderLoader.h"
@@ -172,6 +173,7 @@ namespace UI {
         dragging = false;
         targeted_window = nullptr;
         texture = nullptr;
+        Application::application().module<Storage::Storage>()->save_image(*instance.monitor, start_pos.x, start_pos.y, std::abs(pos.x - start_pos.x), std::abs(pos.y - start_pos.y));
         glfwSetInputMode(instance.window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
         ImGui::GetIO().ConfigFlags &= ~ImGuiConfigFlags_NoMouseCursorChange;
         begin_time = 0.0;

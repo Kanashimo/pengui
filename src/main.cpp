@@ -14,12 +14,14 @@
 #include "src/UI/Ruler.h"
 #include "src/UI/Settings.h"
 #include "src/Config/Config.h"
+#include "src/Storage/Storage.h"
 
 int main()
 {
     try {
         Application app;
         app.attach<Config::Config>();
+        app.attach<Storage::Storage>();
         app.attach<Clipboard::Clipboard>();
         app.attach<UI::Fonts>();
         app.attach<UI::BackgroundTexture>();

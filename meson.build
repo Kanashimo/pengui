@@ -27,6 +27,7 @@ sources = files(
     'src/UI/Pipette.cpp',
     'src/UI/Ruler.cpp',
     'src/Config/Config.cpp',
+    'src/Storage/Storage.cpp'
 )
 
 shaders = files(
