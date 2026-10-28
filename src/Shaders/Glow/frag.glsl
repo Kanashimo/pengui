@@ -2,6 +2,7 @@
 
 uniform vec2 uScreenResolution;
 uniform float uStrength;
+uniform vec3 uColorRGB;
 
 in vec2 vPixelPosition;
 in vec2 vMaxPoint;
@@ -26,6 +27,7 @@ void main ()
     // float glow = uStrength * exp(-d * 0.075f);
     // float glow = uStrength * exp(-d * 0.075f) * exp(-2.4f * max(0, d - 22.5));
     float glow = uStrength * exp(-d * 0.075f) * exp(-10.0f * max(0, d - 22.5));
+    vec3 colorRGB = uColorRGB / 255.0f;
 
-    FragColor = vec4(0.35f, 0.8f, 1.0f, 0.5f) * glow;
+    FragColor = vec4(colorRGB, 0.5f) * glow;
 }

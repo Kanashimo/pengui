@@ -13,6 +13,7 @@ gtk = dependency('gtk4')
 glfw = dependency('glfw3')
 imgui = dependency('imgui', version: '>=1.92.6')
 glbinding = dependency('glbinding')
+tomlpp = dependency('tomlplusplus')
 
 sources = files(
     'src/main.cpp',
@@ -24,7 +25,8 @@ sources = files(
     'src/UI/Crop.cpp',
     'src/UI/Toolbar.cpp',
     'src/UI/Pipette.cpp',
-    'src/UI/Ruler.cpp'
+    'src/UI/Ruler.cpp',
+    'src/Config/Config.cpp',
 )
 
 shaders = files(
@@ -102,6 +104,7 @@ executable(
         gtk,
         glfw,
         imgui,
-        glbinding
+        glbinding,
+        tomlpp
     ]
 )

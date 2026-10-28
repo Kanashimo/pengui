@@ -7,6 +7,7 @@
 
 #include "src/UI/Ruler.h"
 #include "src/Application.h"
+#include "src/Config/Config.h"
 #include "src/ScreenCapture/ScreenCapture.h"
 #include "src/UI/Toolbar.h"
 
@@ -30,9 +31,14 @@ namespace UI {
         if (dragging && instance.window == current_window)
         {
             process_alignment();
-            ImGui::GetForegroundDrawList()->AddLine(start_pos, pos, IM_COL32(90, 200, 255, 255), 5.0f);
-            ImGui::GetForegroundDrawList()->AddCircleFilled(start_pos, 2.5f, IM_COL32(90, 200, 255, 255));
-            ImGui::GetForegroundDrawList()->AddCircleFilled(pos, 2.5f, IM_COL32(90, 200, 255, 255));
+
+            auto width = Application::application().module<Config::Config>()->get().ruler.border.width;
+            auto color = Application::application().module<Config::Config>()->get().ruler.border.color;
+
+            ImGui::GetForegroundDrawList()->AddLine(start_pos, pos, IM_COL32(color.r, color.g, color.b, 255), width);
+            ImGui::GetForegroundDrawList()->AddCircleFilled(start_pos, width / 2.0f, IM_COL32(color.r, color.g, color.b, 255));
+            ImGui::GetForegroundDrawList()->AddCircleFilled(pos, width / 2.0f, IM_COL32(color.r, color.g, color.b, 255));
+
             int dist = static_cast<int>(std::hypot(pos.x - start_pos.x, pos.y - start_pos.y)) + 1;
             std::string dist_text = std::to_string(dist) + "px";
             draw_box(dist_text);

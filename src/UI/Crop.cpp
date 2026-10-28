@@ -5,6 +5,8 @@
 #include <memory>
 #include <stdexcept>
 
+#include "glbinding/gl/functions.h"
+#include "src/Config/Config.h"
 #include "src/UI/Toolbar.h"
 #include "src/Application.h"
 #include "src/ShaderLoader/ShaderLoader.h"
@@ -93,14 +95,16 @@ namespace UI {
                 ImVec2(u1, v1)
             );
 
+            auto width = Application::application().module<Config::Config>()->get().crop.border.width;
+            auto color = Application::application().module<Config::Config>()->get().crop.border.color;
             ImGui::GetForegroundDrawList()->AddRect(
                 start_pos,
                 pos,
-                IM_COL32(90, 200, 255, 200),
+                IM_COL32(color.r, color.g, color.b, 200),
                 0.0f,
                 0,
                 // 2.5f
-                2.0f
+                width
             );
 
             strength = (float)((glfwGetTime() - begin_time) / 0.50f);
@@ -116,6 +120,7 @@ namespace UI {
 
     void Crop::on_after_render(Instance &instance)
     {
+        if (!Application::application().module<Config::Config>()->get().crop.glow.enabled) return;
         if (!dragging || targeted_window != instance.window) return;
 
         if (!programs.contains(&instance) || !arrays.contains(&instance))
@@ -143,6 +148,14 @@ namespace UI {
         gl::glUniform1f(
             gl::glGetUniformLocation(programs[&instance]->get(), "uStrength"),
             strength
+        );
+
+        auto color = Application::application().module<Config::Config>()->get().crop.glow.color;
+        gl::glUniform3f(
+            gl::glGetUniformLocation(programs[&instance]->get(), "uColorRGB"),
+            color.r,
+            color.g,
+            color.b
         );
 
         gl::glDrawArrays(gl::GL_TRIANGLES, 0, 6);
