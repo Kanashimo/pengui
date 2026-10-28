@@ -180,6 +180,7 @@ namespace UI {
         ImGui::GetIO().ConfigFlags &= ~ImGuiConfigFlags_NoMouseCursorChange;
         begin_time = 0.0;
         strength = 0.0f;
+        Application::application().close();
     }
 
 }
