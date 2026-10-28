@@ -14,6 +14,7 @@
 #include "src/UI/Crop.h"
 #include "src/UI/BackgroundTexture.h"
 #include "src/UI/Exit.h"
+#include "src/Clipboard/Clipboard.h"
 
 
 namespace UI {
@@ -173,7 +174,8 @@ namespace UI {
         dragging = false;
         targeted_window = nullptr;
         texture = nullptr;
-        Application::application().module<Storage::Storage>()->save_image(*instance.monitor, start_pos.x, start_pos.y, std::abs(pos.x - start_pos.x), std::abs(pos.y - start_pos.y));
+        auto image_path = Application::application().module<Storage::Storage>()->save_image(*instance.monitor, start_pos.x, start_pos.y, std::abs(pos.x - start_pos.x), std::abs(pos.y - start_pos.y));
+        Application::application().module<Clipboard::Clipboard>()->copy_image(image_path);
         glfwSetInputMode(instance.window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
         ImGui::GetIO().ConfigFlags &= ~ImGuiConfigFlags_NoMouseCursorChange;
         begin_time = 0.0;
