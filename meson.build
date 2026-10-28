@@ -42,7 +42,21 @@ find_program('cp', required: true)
 find_program('mkdir', required: true)
 
 foreach f : shaders
-  run_command(bash, files('scripts/copy_shader.sh'), meson.project_build_root(), fs.parent(f), fs.name(f), check: true)
+
+  custom_target(
+    'shader_' + fs.name(fs.parent(f)) + '_' + fs.name(f),
+    input: f,
+    output: fs.name(fs.parent(f)) + '.' + fs.name(f) + '.generated',
+    command: [
+      bash,
+      files('scripts/copy_shader.sh'),
+      meson.project_build_root(),
+      fs.parent(f),
+      fs.name(f),
+    ],
+    build_by_default: true,
+  )
+
 endforeach
 
 ## VERY VERY VERY VERY TEMPORARY SOLUTION, I DON'T HAVE TIME FOR THIS
