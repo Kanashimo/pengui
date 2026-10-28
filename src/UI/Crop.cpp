@@ -16,6 +16,8 @@
 #include "src/UI/Exit.h"
 #include "src/Clipboard/Clipboard.h"
 
+#include "Glow_vert.h"
+#include "Glow_frag.h"
 
 namespace UI {
 
@@ -25,10 +27,10 @@ namespace UI {
         gl::glGenVertexArrays(1, &array);
         auto loader = std::make_unique<ShaderLoader>();
         loader->load(gl::GL_VERTEX_SHADER, {
-            "Glow/vert.glsl",
+            Shaders::Glow::vert,
         });
         loader->load(gl::GL_FRAGMENT_SHADER, {
-            "Glow/frag.glsl"
+            Shaders::Glow::frag
         });
         // TODO: fix segfault on comp err
         loader->compile();

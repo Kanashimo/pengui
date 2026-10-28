@@ -31,13 +31,6 @@ sources = files(
     'src/Clipboard/Clipboard.h'
 )
 
-shaders = files(
-  'src/Shaders/Glow/vert.glsl',
-  'src/Shaders/Glow/frag.glsl'
-)
-
-fs = import('fs')
-
 bash = find_program('bash', required: true)
 
 find_program('xxd', required: true)
@@ -45,23 +38,35 @@ find_program('sed', required: true)
 find_program('cp', required: true)
 find_program('mkdir', required: true)
 
-foreach f : shaders
+# foreach f : shaders
+#   custom_target(
+#     'shader_' + fs.name(fs.parent(f)) + '_' + fs.name(f),
+#     input: f,
+#     output: fs.name(fs.parent(f)) + '.' + fs.name(f) + '.generated',
+#     command: [
+#       bash,
+#       files('scripts/copy_shader.sh'),
+#       meson.project_build_root(),
+#       fs.parent(f),
+#       fs.name(f),
+#     ],
+#     build_by_default: true,
+#   )
+# endforeach
 
-  custom_target(
-    'shader_' + fs.name(fs.parent(f)) + '_' + fs.name(f),
-    input: f,
-    output: fs.name(fs.parent(f)) + '.' + fs.name(f) + '.generated',
-    command: [
-      bash,
-      files('scripts/copy_shader.sh'),
-      meson.project_build_root(),
-      fs.parent(f),
-      fs.name(f),
-    ],
-    build_by_default: true,
-  )
+shader_glow_vert = custom_target(
+  'shader_glow_vert',
+  input: 'src/Shaders/Glow/vert.glsl',
+  output: 'Glow_vert.h',
+  command: [bash, files('scripts/build_shader.sh'), '@INPUT@', '@OUTPUT@'],
+)
 
-endforeach
+shader_glow_frag = custom_target(
+  'shader_glow_frag',
+  input: 'src/Shaders/Glow/frag.glsl',
+  output: 'Glow_frag.h',
+  command: [bash, files('scripts/build_shader.sh'), '@INPUT@', '@OUTPUT@'],
+)
 
 roboto_regular = custom_target(
   'roboto_regular',
@@ -70,11 +75,20 @@ roboto_regular = custom_target(
   command: [bash, files('scripts/build_font.sh'), '@INPUT@', '@OUTPUT@'],
 )
 
+icons = custom_target(
+  'icons',
+  input: 'src/Fonts/Icons.ttf',
+  output: 'Icons.h',
+  command: [bash, files('scripts/build_font.sh'), '@INPUT@', '@OUTPUT@'],
+)
+
 executable(
     'pengui',
     sources,
-    shaders,
     roboto_regular,
+    icons,
+    shader_glow_vert,
+    shader_glow_frag,
     dependencies: [
         glib,
         gio,

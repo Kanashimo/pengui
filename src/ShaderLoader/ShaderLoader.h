@@ -32,6 +32,7 @@ class ShaderLoader
         static std::string gl_get_error();
 
         void load(ShaderType type, std::initializer_list<std::string> sources);
+        void load_from_file(ShaderType type, std::initializer_list<std::string> sources);
         void use();
         void compile();
         ShaderProgram get();

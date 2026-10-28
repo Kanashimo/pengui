@@ -40,7 +40,7 @@ std::string ShaderLoader::gl_get_error()
 
 ShaderLoader::ShaderLoader()
 {
-    if (!initialized) throw std::runtime_error("Glew not initialized");
+    if (!initialized) throw std::runtime_error("OpenGL not initialized");
     program = gl::glCreateProgram();
 
     if (!program)
@@ -50,6 +50,16 @@ ShaderLoader::ShaderLoader()
 }
 
 void ShaderLoader::load(ShaderType type, std::initializer_list<std::string> sources)
+{
+    for (auto &source : sources) {
+        ShaderResource shader_res;
+        shader_res.source = source;
+        shader_res.type = type;
+        shaders.push_back(std::move(shader_res));
+    }
+}
+
+void ShaderLoader::load_from_file(ShaderType type, std::initializer_list<std::string> sources)
 {
     for (auto &source : sources) {
         ShaderResource shader_res;
