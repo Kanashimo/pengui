@@ -63,41 +63,18 @@ foreach f : shaders
 
 endforeach
 
-## VERY VERY VERY VERY TEMPORARY SOLUTION, I DON'T HAVE TIME FOR THIS
 roboto_regular = custom_target(
-  'build_fonts1',
+  'roboto_regular',
   input: 'src/Fonts/Roboto-Regular.ttf',
   output: 'Roboto_Regular.h',
-  command: [bash, files('scripts/build_font.sh'), '@INPUT@', '@OUTPUT@'],
-)
-
-roboto_bold = custom_target(
-  'build_fonts2',
-  input: 'src/Fonts/Roboto-Bold.ttf',
-  output: 'Roboto_Bold.h',
-  command: [bash, files('scripts/build_font.sh'), '@INPUT@', '@OUTPUT@'],
-)
-
-roboto_light = custom_target(
-  'build_fonts3',
-  input: 'src/Fonts/Roboto-Light.ttf',
-  output: 'Roboto_Light.h',
-  command: [bash, files('scripts/build_font.sh'), '@INPUT@', '@OUTPUT@'],
-)
-
-roboto_light = custom_target(
-  'build_fonts4',
-  input: 'src/Fonts/Icons.ttf',
-  output: 'Icons.h',
   command: [bash, files('scripts/build_font.sh'), '@INPUT@', '@OUTPUT@'],
 )
 
 executable(
     'pengui',
     sources,
+    shaders,
     roboto_regular,
-    roboto_bold,
-    roboto_light,
     dependencies: [
         glib,
         gio,
