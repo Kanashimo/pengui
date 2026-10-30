@@ -163,7 +163,7 @@ ShaderProgram ShaderLoader::get()
 
 ShaderLoader::~ShaderLoader()
 {
-    std::cout << "shaderloader destroyed" << std::endl;
+    // std::cout << "shaderloader destroyed" << std::endl;
     if (!program) return;
     if (shaders.size() > 0) cleanup_shaders();
     gl::glDeleteProgram(program);

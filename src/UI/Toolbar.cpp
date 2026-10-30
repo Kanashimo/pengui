@@ -93,7 +93,7 @@ namespace UI {
     void Toolbar::set_busy(bool state)
     {
         busy = state;
-        std::cout << "busy" << std::endl;
+        // std::cout << "busy" << std::endl;
     }
 
     void Toolbar::render_button(ToolbarOption option, const char* icon, const char* tooltip_label)
