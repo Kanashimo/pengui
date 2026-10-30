@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=pengui
+GenericName=Bloat-free screenshot utility
+Type=Application
+Comment=Bloat-free screenshot utility
+Icon=net.kanashimo.pengui
+Exec=pengui
+Terminal=false
+Categories=Utility
+StartupNotify=false

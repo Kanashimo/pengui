@@ -7,13 +7,13 @@ add_project_arguments(
 
 glib = dependency('glib-2.0')
 gio = dependency('gio-2.0')
-libportal = dependency('libportal')
+libportal = dependency('libportal', default_options: ['vapi=false', 'docs=false'])
 gdk_pixbuf = dependency('gdk-pixbuf-2.0')
 gtk = dependency('gtk4')
 glfw = dependency('glfw3')
 imgui = dependency('imgui', version: '>=1.92.6')
-glbinding = dependency('glbinding')
-tomlpp = dependency('tomlplusplus')
+glbinding = dependency('glbinding', static: true)
+tomlpp = dependency('tomlplusplus', static: true)
 
 sources = files(
     'src/main.cpp',
@@ -99,5 +99,16 @@ executable(
         imgui,
         glbinding,
         tomlpp
-    ]
+    ],
+    install: true
+)
+
+install_data(
+  files('data/net.kanashimo.pengui.desktop'),
+  install_dir: join_paths(get_option('datadir'), 'applications')
+)
+
+install_subdir(
+  'data/icons/hicolor',
+  install_dir: join_paths(get_option('datadir'), 'icons')
 )
