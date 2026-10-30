@@ -51,7 +51,6 @@ namespace UI {
         if (Application::application().module<Toolbar>()->get_current_option() != OPTION_CROP) return;
 
         pos = ImGui::GetMousePos();
-        if (pos.x >= 0 && pos.y >= 0) end_pos = pos;
 
         if (ImGui::IsMouseClicked(ImGuiMouseButton_Left) && !dragging && !ImGui::GetIO().WantCaptureMouse)
         {
@@ -77,13 +76,13 @@ namespace UI {
         if (dragging && targeted_window == instance.window)
         {
             ImVec2 r_min(
-                std::min(start_pos.x, end_pos.x),
-                std::min(start_pos.y, end_pos.y)
+                std::min(start_pos.x, pos.x),
+                std::min(start_pos.y, pos.y)
             );
 
             ImVec2 r_max(
-                std::max(start_pos.x, end_pos.x),
-                std::max(start_pos.y, end_pos.y)
+                std::max(start_pos.x, pos.x),
+                std::max(start_pos.y, pos.y)
             );
 
             float u0 = r_min.x / instance.monitor->width;
@@ -104,7 +103,7 @@ namespace UI {
             auto color = Application::application().module<Config::Config>()->get().crop.border.color;
             ImGui::GetForegroundDrawList()->AddRect(
                 start_pos,
-                end_pos,
+                pos,
                 IM_COL32(color.r, color.g, color.b, 200),
                 0.0f,
                 0,
@@ -117,7 +116,7 @@ namespace UI {
             strength = 1.0f - std::pow(1.0f - strength, 3.0f);
         }
 
-        if (ImGui::IsMouseReleased(ImGuiMouseButton_Left) || (dragging && ImGui::GetIO().AppFocusLost))
+        if (ImGui::IsMouseReleased(ImGuiMouseButton_Left))
         {
             stop_dragging(instance);
         }
@@ -146,8 +145,8 @@ namespace UI {
 
         gl::glUniform2f(
           gl::glGetUniformLocation(programs[&instance]->get(), "uEndPoint"),
-          end_pos.x,
-          end_pos.y
+          pos.x,
+          pos.y
         );
 
         gl::glUniform1f(
@@ -179,10 +178,10 @@ namespace UI {
         texture = nullptr;
         auto image_path = Application::application().module<Storage::Storage>()->save_image(
             *instance.monitor,
-            std::min(start_pos.x, end_pos.x),
-            std::min(start_pos.y, end_pos.y),
-            std::abs(end_pos.x - start_pos.x),
-            std::abs(end_pos.y - start_pos.y)
+            std::min(start_pos.x, pos.x),
+            std::min(start_pos.y, pos.y),
+            std::abs(pos.x - start_pos.x),
+            std::abs(pos.y - start_pos.y)
         );
         Application::application().module<Clipboard::Clipboard>()->copy_image(image_path);
         glfwSetInputMode(instance.window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
