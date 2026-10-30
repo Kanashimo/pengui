@@ -176,12 +176,16 @@ namespace UI {
         dragging = false;
         targeted_window = nullptr;
         texture = nullptr;
+
+        float len_x = std::max(std::abs(pos.x - start_pos.x), 1.0f);
+        float len_y = std::max(std::abs(pos.y - start_pos.y), 1.0f);
+
         auto image_path = Application::application().module<Storage::Storage>()->save_image(
             *instance.monitor,
             std::min(start_pos.x, pos.x),
             std::min(start_pos.y, pos.y),
-            std::abs(pos.x - start_pos.x),
-            std::abs(pos.y - start_pos.y)
+            len_x,
+            len_y
         );
         Application::application().module<Clipboard::Clipboard>()->copy_image(image_path);
         glfwSetInputMode(instance.window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
