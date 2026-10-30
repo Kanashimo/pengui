@@ -116,7 +116,7 @@ namespace UI {
             strength = 1.0f - std::pow(1.0f - strength, 3.0f);
         }
 
-        if (ImGui::IsMouseReleased(ImGuiMouseButton_Left))
+        if (ImGui::IsMouseReleased(ImGuiMouseButton_Left) && !ImGui::GetIO().WantCaptureMouse)
         {
             stop_dragging(instance);
         }
