@@ -14,6 +14,7 @@ namespace UI {
         private:
             ImVec2 pos;
             ImVec2 start_pos;
+            ImVec2 end_pos;
             bool dragging;
             GLFWwindow *current_window;
 

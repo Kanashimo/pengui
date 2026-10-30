@@ -18,6 +18,7 @@ namespace UI {
         if (Application::application().module<Toolbar>()->get_current_option() != OPTION_RULER) return;
 
         pos = ImGui::GetMousePos();
+        if (pos.x >= 0 && pos.y >= 0) end_pos = pos;
 
         if (ImGui::IsMouseClicked(ImGuiMouseButton_Left) && !dragging && !ImGui::GetIO().WantCaptureMouse)
         {
@@ -35,16 +36,16 @@ namespace UI {
             auto width = Application::application().module<Config::Config>()->get().ruler.border.width;
             auto color = Application::application().module<Config::Config>()->get().ruler.border.color;
 
-            ImGui::GetForegroundDrawList()->AddLine(start_pos, pos, IM_COL32(color.r, color.g, color.b, 255), width);
+            ImGui::GetForegroundDrawList()->AddLine(start_pos, end_pos, IM_COL32(color.r, color.g, color.b, 255), width);
             ImGui::GetForegroundDrawList()->AddCircleFilled(start_pos, width / 2.0f, IM_COL32(color.r, color.g, color.b, 255));
-            ImGui::GetForegroundDrawList()->AddCircleFilled(pos, width / 2.0f, IM_COL32(color.r, color.g, color.b, 255));
+            ImGui::GetForegroundDrawList()->AddCircleFilled(end_pos, width / 2.0f, IM_COL32(color.r, color.g, color.b, 255));
 
-            int dist = static_cast<int>(std::hypot(pos.x - start_pos.x, pos.y - start_pos.y)) + 1;
+            int dist = static_cast<int>(std::hypot(end_pos.x - start_pos.x, end_pos.y - start_pos.y)) + 1;
             std::string dist_text = std::to_string(dist) + "px";
             draw_box(dist_text);
         }
 
-        if (ImGui::IsMouseReleased(ImGuiMouseButton_Left) && dragging)
+        if (ImGui::IsMouseReleased(ImGuiMouseButton_Left) || (dragging && ImGui::GetIO().AppFocusLost))
         {
             dragging = false;
             Application::application().module<Toolbar>()->set_busy(false);
@@ -62,8 +63,8 @@ namespace UI {
         constexpr float snap = pi / 4.0f;
 
         ImVec2 dist = ImVec2(
-            pos.x - start_pos.x,
-            pos.y - start_pos.y
+            end_pos.x - start_pos.x,
+            end_pos.y - start_pos.y
         );
 
         float len = std::hypot(dist.x, dist.y);
@@ -94,7 +95,7 @@ namespace UI {
 
         max_len = std::max(0.0f, max_len);
 
-        pos = ImVec2(
+        end_pos = ImVec2(
             start_pos.x + dist_final.x * max_len,
             start_pos.y + dist_final.y * max_len
         );
@@ -107,7 +108,7 @@ namespace UI {
         ImVec2 size = ImGui::CalcTextSize(text.c_str());
 
         int padding = 10;
-        ImVec2 padding_pos = ImVec2(pos.x + padding, pos.y + padding);
+        ImVec2 padding_pos = ImVec2(end_pos.x + padding, end_pos.y + padding);
         ImVec2 padding_size = ImVec2(size.x + padding, size.y + padding);
 
         float x = std::clamp(padding_pos.x, 0.0f, (float)monitor->width - padding_size.x);
