@@ -7,6 +7,11 @@
         pengui
     </h1>
     Bloat-free screenshot utility
+    <br>
+    <img alt="artifact build status" src="https://img.shields.io/github/actions/workflow/status/kanashimo/pengui/.github%2Fworkflows%2Fflatpak-artifact.yml?logo=githubactions&logoColor=white">
+    <img alt="release" src="https://img.shields.io/github/v/release/kanashimo/pengui?color=blue">
+    <img alt="C++20" src="https://img.shields.io/badge/C%2B%2B-20-blue?logo=c%2B%2B">
+    <img alt="license" src="https://img.shields.io/github/license/kanashimo/pengui?logo=gnu&color=red">
 </div>
 
 - [Features](#features)
@@ -28,9 +33,9 @@
 - [License](#license)
 
 ## Features
-- taking and cropping screenshots
-- ruler with axis alignment (<kbd>Shift</kbd>)
-- pipette 
+- Taking and cropping screenshots
+- Ruler with axis alignment (<kbd>Shift</kbd>)
+- Pipette 
 
 ## What's the difference compared to other screenshot applications?
 Most of the popular alternatives use a huge bloated frameworks like Qt or GTK. Meanwhile, pengui uses raw OpenGL and ImGui and requires only half of the memory that KDE's Spectale needs.
@@ -51,7 +56,8 @@ Alternativly, if you dont't trust the first source or it just doesn't work, you 
 wget -O - https://raw.githubusercontent.com/kanashimo/pengui/refs/heads/main/install.sh | sh
 ```
 
-After installation, you can assign system shortcut to pengui for launching it with for e.g. <kbd>Meta+Shift+S</kbd> or <kbd>PrntScr</kbd> in you system's settings.
+After installation, you can assign system shortcut to pengui for launching it with for e.g. <kbd>Meta+Shift+S</kbd> or <kbd>PrntScr</kbd> in your system's settings.
+
 ### Manual Installation
 1. Download latest Flatpak bundle from [releases page](https://github.com/Kanashimo/pengui/releases)
 2. Add Flathub repository to your user
@@ -68,7 +74,7 @@ If you don't have GNOME runtime installed and for some reason it wasn't installe
 flatpak install --user flathub org.gnome.Platform//51
 ```
 
-Same as in automatic installation, you can assign system shortcut to pengui for launching it with for e.g. <kbd>Meta+Shift+S</kbd> or <kbd>PrntScr</kbd> in you system's settings.
+Same as in automatic installation, you can now assign system shortcut to pengui for launching it with for e.g. <kbd>Meta+Shift+S</kbd> or <kbd>PrntScr</kbd> in your system's settings.
 
 ## Usage
 
@@ -119,4 +125,6 @@ All contributions are welcome! If you have come up with and idea to add a new fe
 Special thanks to [GraphLink](https://graphlink.eu/) for making our logo.
 
 ## License
-Pengui is released under the [GPLv3 license](https://github.com/Kanashimo/pengui/blob/main/LICENSE).
+Pengui is released under the [GPL-3.0 license](https://github.com/Kanashimo/pengui/blob/main/LICENSE).
+
+The logo is under the CC BY-SA 4.0 license.
