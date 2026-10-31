@@ -25,7 +25,7 @@
   - [Where is the config being stored?](#where-is-the-config-being-stored)
   - [Available properties](#available-properties)
     - [`[crop.border]`](#cropborder)
-    - [`[crop.glow]`](#cropborder)
+    - [`[crop.glow]`](#cropglow)
     - [`[ruler.border]`](#rulerborder)
     - [`[screenshot]`](#screenshot)
   - [Full example of working config file](#full-example-of-working-config-file)
@@ -44,10 +44,10 @@
 - Pipette 
 
 ## What's the difference compared to other screenshot applications?
-Most of the popular alternatives use a huge bloated frameworks like Qt or GTK. Meanwhile, pengui uses raw OpenGL and ImGui and requires only half of the memory that KDE's Spectacle needs.
+Most of the popular alternatives use a huge, bloated frameworks like Qt or GTK. Meanwhile, pengui uses raw OpenGL and ImGui and requires only half of the memory that KDE's Spectacle needs.
 
 > [!NOTE]
-> It's a known bug that pengui can be CPU-consuming, it will be fixed in the upcoming release. Also, pengui uses GTK as a library, but only to be albe to take screenshots with `libportal`, not to display any content.
+> It's a known bug that pengui can be CPU-consuming, it will be fixed in the upcoming release. Also, pengui uses GTK as a library, but only to be able to take screenshots with `libportal`, not to display any content.
 
 ## Installing
 
@@ -57,7 +57,7 @@ Paste this command into your terminal:
 wget -O - https://pengui.kanashimo.net/install.sh | sh
 ```
 
-Alternativly, if you dont't trust the first source or it just doesn't work, you can download the script directly form the repository:
+Alternatively, if you dont't trust the first source or it just doesn't work, you can download the script directly form the repository:
 ```bash
 wget -O - https://raw.githubusercontent.com/kanashimo/pengui/refs/heads/main/install.sh | sh
 ```
@@ -75,7 +75,7 @@ flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/fl
 flatpak install --user pengui.flatpak
 ```
 
-If you don't have GNOME runtime installed and for some reason it wasn't installed automaticlly, run this command:
+If you don't have GNOME runtime installed and for some reason it wasn't installed automatically, run this command:
 ```bash
 flatpak install --user flathub org.gnome.Platform//51
 ```
@@ -89,10 +89,10 @@ flatpak uninstall --user net.kanashimo.pengui
 ```
 
 ## Configuration
-Pengui uses `.toml` files for its configuration, [here](https://toml.io/en/) you can get a quick tour of the language if you dont't know it yet.
+Pengui uses `.toml` files for its configuration, [here](https://toml.io/en/) you can get a quick tour of the language if you don't know it yet.
 
 ### Where is the config being stored?
-The answer is as always, it depends. If you are running this application in the "official" way (so throught Flatpak), you will be albe to find the config in `$HOME/.var/app/net.kanashimo.pengui/config/pengui`. Otherwise, if you are running it natively, your config will be in `$HOME/.config/pengui`.
+The answer is as always, it depends. If you are running this application in the "official" way (so through Flatpak), you will be albe to find the config in `$HOME/.var/app/net.kanashimo.pengui/config/pengui`. Otherwise, if you are running it natively, your config will be in `$HOME/.config/pengui`.
 
 ### Available properties
 
@@ -160,7 +160,7 @@ flatpak-builder --user --install --force-clean build-dir flatpak/net.kanashimo.p
 ```
 
 ## Contributing
-All contributions are welcome! If you have come up with and idea to add a new feature and want to implement it (or just request it), create an [issue](https://github.com/Kanashimo/pengui/issues). If you found any bug, I'd really appreciate it if you could report it.
+All contributions are welcome! If you have come up with an idea to add a new feature and want to implement it (or just request it), create an [issue](https://github.com/Kanashimo/pengui/issues). If you found any bug, I'd really appreciate it if you could report it.
 
 ## Acknowledgements
 Special thanks to [GraphLink](https://graphlink.eu/) for making our logo.
