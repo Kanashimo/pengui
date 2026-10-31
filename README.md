@@ -6,19 +6,20 @@
         <br>
         pengui
     </h1>
-    Bloat-free screenshot utility
-    <br>
     <img alt="artifact build status" src="https://img.shields.io/github/actions/workflow/status/kanashimo/pengui/.github%2Fworkflows%2Fflatpak-artifact.yml?logo=githubactions&logoColor=white">
     <img alt="release" src="https://img.shields.io/github/v/release/kanashimo/pengui?color=blue">
     <img alt="C++20" src="https://img.shields.io/badge/C%2B%2B-20-blue?logo=c%2B%2B">
     <img alt="license" src="https://img.shields.io/github/license/kanashimo/pengui?logo=gnu&color=red">
+    <br>
+    Bloat-free screenshot utility
 </div>
 
-- [Features](#features)
+- [Features and tools](#features-and-tools)
 - [What's the difference compared to other screenshot applications?](#whats-the-difference-compared-to-other-screenshot-applications)
 - [Installing](#installing)
   - [Automatic Installation](#automatic-installation)
   - [Manual Installation](#manual-installation)
+  - [How to uninstall?](#how-to-uninstall)
 - [Usage](#usage)
 - [Configuration](#configuration)
   - [Where is the config being stored?](#where-is-the-config-being-stored)
@@ -32,8 +33,9 @@
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
 
-## Features
+## Features and tools
 - Taking and cropping screenshots
+- Support for both Wayland and X11
 - Ruler with axis alignment (<kbd>Shift</kbd>)
 - Pipette 
 
@@ -59,12 +61,12 @@ wget -O - https://raw.githubusercontent.com/kanashimo/pengui/refs/heads/main/ins
 After installation, you can assign system shortcut to pengui for launching it with for e.g. <kbd>Meta+Shift+S</kbd> or <kbd>PrntScr</kbd> in your system's settings.
 
 ### Manual Installation
-1. Download latest Flatpak bundle from [releases page](https://github.com/Kanashimo/pengui/releases)
-2. Add Flathub repository to your user
+1. Download latest Flatpak bundle from [releases page](https://github.com/Kanashimo/pengui/releases).
+2. Add Flathub repository to your user.
 ```bash
 flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 ```
-3. Install pengui
+3. Install pengui.
 ```bash
 flatpak install --user pengui.flatpak
 ```
@@ -76,7 +78,11 @@ flatpak install --user flathub org.gnome.Platform//51
 
 Same as in automatic installation, you can now assign system shortcut to pengui for launching it with for e.g. <kbd>Meta+Shift+S</kbd> or <kbd>PrntScr</kbd> in your system's settings.
 
-## Usage
+### How to uninstall? 
+To uninstall pengui, use `flatpak uninstall` with `--user` flag.
+```bash
+flatpak uninstall --user net.kanashimo.pengui
+```
 
 ## Configuration
 Pengui uses `.toml` files for its configuration, [here](https://toml.io/en/) you can get a quick tour of the language if you dont't know it yet.
