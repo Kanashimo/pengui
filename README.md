@@ -5,12 +5,12 @@
         </a>
         <br>
         pengui
+        <br>
+        <img alt="artifact build status" src="https://img.shields.io/github/actions/workflow/status/kanashimo/pengui/.github%2Fworkflows%2Fflatpak-artifact.yml?logo=githubactions&logoColor=white">
+        <img alt="release" src="https://img.shields.io/github/v/release/kanashimo/pengui?color=blue">
+        <img alt="C++20" src="https://img.shields.io/badge/C%2B%2B-20-blue?logo=c%2B%2B">
+        <img alt="license" src="https://img.shields.io/github/license/kanashimo/pengui?logo=gnu&color=red">
     </h1>
-    <img alt="artifact build status" src="https://img.shields.io/github/actions/workflow/status/kanashimo/pengui/.github%2Fworkflows%2Fflatpak-artifact.yml?logo=githubactions&logoColor=white">
-    <img alt="release" src="https://img.shields.io/github/v/release/kanashimo/pengui?color=blue">
-    <img alt="C++20" src="https://img.shields.io/badge/C%2B%2B-20-blue?logo=c%2B%2B">
-    <img alt="license" src="https://img.shields.io/github/license/kanashimo/pengui?logo=gnu&color=red">
-    <br>
     Bloat-free screenshot utility
 </div>
 
