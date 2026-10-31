@@ -1,16 +1,16 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # ************************************************ #
 #            pengui installation script            #
 # ************************************************ #
 
-set -euo pipefail
+set -eu
 
 REPOSITORY="kanashimo/pengui"
 FILE="pengui.flatpak"
 
-for cmd in jq curl flatpak; do
-    if command -v "$cmd" &>/dev/null; then
+for cmd in curl flatpak; do
+    if command -v "$cmd" > /dev/null 2>&1; then
         echo "$cmd found"
     else
         echo "$cmd missing, install it from your package manager and try again..."
@@ -18,23 +18,16 @@ for cmd in jq curl flatpak; do
     fi
 done
 
-release_url="https://api.github.com/repos/${REPOSITORY}/releases/latest"
-response=$(curl -fsSL "$release_url")
-
-bundle_url=$(jq -er \
-    --arg asset "$FILE" \
-    '.assets[] | select(.name == $asset) | .browser_download_url' \
-    <<< "$response"
-)
+release_url="https://github.com/$REPOSITORY/releases/latest/download/$FILE"
 
 FILE="/tmp/$FILE"
 
-curl -fL --retry 3 "$bundle_url" -o $FILE
+curl -fL --retry 3 "$release_url" -o "$FILE"
 
 flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 flatpak install -y --noninteractive --user flathub org.gnome.Platform//51
-flatpak install -y --noninteractive --user $FILE
+flatpak install -y --noninteractive --user "$FILE"
 
 echo "Pengui was successfully installed. You will now have to add launch shortcut manually depending on your system configuration."
 
-rm $FILE
+rm "$FILE"
