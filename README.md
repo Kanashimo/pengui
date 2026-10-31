@@ -28,6 +28,7 @@
     - [`crop.glow`](#cropborder)
     - [`ruler.border`](#rulerborder)
     - [`screenshot`](#screenshot)
+  - [Full example of default config file](#full-example-of-default-config-file)
 - [Building from source](#building-from-source)
 - [Contributing](#contributing)
 - [Acknowledgements](#acknowledgements)
@@ -115,6 +116,24 @@ The answer is as always, it depends. If you are running this application in the 
 |------------------|--------------------|---------------------------------------|
 | `save_location`  | `string` (path)    | `$XDG_PICTURES_DIR/PenguiScreenshots` |
 
+### Full example of default config file
+```toml
+[crop.border]
+color = [ 90, 200, 255 ]
+width = 2.0
+
+[crop.glow]
+color = [ 90, 200, 255 ]
+enabled = false
+
+[ruler.border]
+color = [ 90, 200, 255 ]
+width = 5.0
+
+[screenshot]
+save_location = '/home/example/Pictures/PenguiScreenshots'
+```
+
 ## Building from source
 ```bash
 meson setup build
@@ -125,7 +144,7 @@ Alternatively, if you are developing the application and want to both, compile a
 To start a debugging session with `gdb` use `make debug`.
 
 ## Contributing
-All contributions are welcome! If you have come up with and idea to add a new feature and want to implement it (or just request it), create an [issue](https://github.com/Kanashimo/pengui/issues). If you find a bug, I'd really appreciate it if you could report it.
+All contributions are welcome! If you have come up with and idea to add a new feature and want to implement it (or just request it), create an [issue](https://github.com/Kanashimo/pengui/issues). If you found any bug, I'd really appreciate it if you could report it.
 
 ## Acknowledgements
 Special thanks to [GraphLink](https://graphlink.eu/) for making our logo.
