@@ -41,7 +41,7 @@
 - Pipette 
 
 ## What's the difference compared to other screenshot applications?
-Most of the popular alternatives use a huge bloated frameworks like Qt or GTK. Meanwhile, pengui uses raw OpenGL and ImGui and requires only half of the memory that KDE's Spectale needs.
+Most of the popular alternatives use a huge bloated frameworks like Qt or GTK. Meanwhile, pengui uses raw OpenGL and ImGui and requires only half of the memory that KDE's Spectacle needs.
 
 > [!NOTE]
 > It's a known bug that pengui can be CPU-consuming, it will be fixed in the upcoming release. Also, pengui uses GTK as a library, but only to be albe to take screenshots with `libportal`, not to display any content.
@@ -135,13 +135,26 @@ save_location = '/home/example/Pictures/PenguiScreenshots'
 ```
 
 ## Building from source
+
+### Requirements
+- [meson](https://mesonbuild.com/)
+- [ninja](https://ninja-build.org/)
+- [flatpak](https://github.com/flatpak/flatpak) (optional)
+- [flatpak-builder](https://github.com/flatpak/flatpak-builder) (optional)
+
+### Building pengui
 ```bash
 meson setup build
 meson compile -C build
 ```
-ĄĄĄĄĄĄĄĄĄĄĄĄĄĄĄĄĄĄĄĄĄĄĄĄĄĄĄĄĄĄĄ
-Alternatively, if you are developing the application and want to both, compile and run use `make` command.
-To start a debugging session with `gdb` use `make debug`.
+
+After building you can run `meson install -C build` to install the binary, although it isn't recommended because pengui is intended to be a Flatpak application, so this option is never tested. Use at your own risk.
+
+### Building pengui as a Flatpak application
+```bash
+meson subprojects download
+flatpak-builder --user --install --force-clean build-dir flatpak/net.kanashimo.pengui.yml
+```
 
 ## Contributing
 All contributions are welcome! If you have come up with and idea to add a new feature and want to implement it (or just request it), create an [issue](https://github.com/Kanashimo/pengui/issues). If you found any bug, I'd really appreciate it if you could report it.
