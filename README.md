@@ -9,23 +9,23 @@
     Bloat-free screenshot utility
 </div>
 
-- (Features)[#features]
-- (What's the difference compared to other screenshot applications?)[#whats-the-difference-compared-to-other-screenshot-applications]
-- (Installing)[#installing]
-  - (Automatic Installation)[#automatic-installation]
-  - (Manual Installation)[#manual-installation]
-- (Usage)[#usage]
-- (Configuration)[#configuration]
-  - (Where is the config being stored?)[#where-is-the-config-being-stored]
-  - (Available properties)[#available-properties]
-    - (`[crop.border]`)[#cropborder]
-    - (`[crop.glow]`)[#cropborder]
-    - (`[ruler.border]`)[#rulerborder]
-    - (`[screenshot]`)[#screenshot]
-- Building from source
-- Contributing
-- Acknowledgements
-- License
+- [Features](#features)
+- [What's the difference compared to other screenshot applications?](#whats-the-difference-compared-to-other-screenshot-applications)
+- [Installing](#installing)
+  - [Automatic Installation](#automatic-installation)
+  - [Manual Installation](#manual-installation)
+- [Usage](#usage)
+- [Configuration](#configuration)
+  - [Where is the config being stored?](#where-is-the-config-being-stored)
+  - [Available properties](#available-properties)
+    - [`crop.border`](#cropborder)
+    - [`crop.glow`](#cropborder)
+    - [`ruler.border`](#rulerborder)
+    - [`screenshot`](#screenshot)
+- [Building from source](#building-from-source)
+- [Contributing](#contributing)
+- [Acknowledgements](#acknowledgements)
+- [License](#license)
 
 ## Features
 - taking and cropping screenshots
