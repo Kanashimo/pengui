@@ -12,7 +12,6 @@
 #include "src/UI/Pipette.h"
 #include "src/Clipboard/Clipboard.h"
 #include "src/UI/Ruler.h"
-#include "src/UI/Settings.h"
 #include "src/Config/Config.h"
 #include "src/Storage/Storage.h"
 
