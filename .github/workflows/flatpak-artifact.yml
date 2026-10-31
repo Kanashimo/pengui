@@ -1,47 +1,53 @@
-# name: Flatpak Artifact
-#
-# on:
-#   push:
-#     branches:
-#       - "main"
-#   workflow_dispatch:
-#
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v4
-#
-#       - name: Install flatpak
-#         run: |
-#             sudo apt-get update
-#             sudo apt-get install -y flatpak flatpak-builder
-#
-#       - name: Add flathub repository
-#         run: |
-#             sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-#
-#       - name: Install GNOME runtime
-#         run: |
-#             sudo flatpak install -y flathub org.gnome.Platform//51
-#             sudo flatpak install -y flathub org.gnome.Sdk//51
-#
-#       - name: Fetch wraps
-#         run: |
-#             meson wraps
-#
-#       - name: Build artifact
-#         run: |
-#             flatpak-builder \
-#               --force-clean
-#               --repo=build
-#               build-dir
-#               flatpak/net.kanashimo.pengui.yml
-#
-#       - name: Upload artifact
-#         uses: actions/upload-artifact@v4
-#         with:
-#           path: pengui.flatpak
-#           if-no-files-found: error
+name: Flatpak Artifact
+
+on:
+  push:
+    branches:
+      - "main"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update apt repository
+        run: sudo apt-get update
+
+      - name: Install flatpak
+        run: sudo apt-get install -y flatpak flatpak-builder
+
+      - name: Add flathub repository
+        run: sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+      - name: Install GNOME runtime
+        run: |
+            sudo flatpak install -y flathub org.gnome.Platform//51
+            sudo flatpak install -y flathub org.gnome.Sdk//51
+
+      - name: Install meson
+        run: sudo apt-get install -y meson ninja-build
+
+      - name: Download meson wraps
+        run: meson subprojects download
+
+      - name: Build artifact
+        run: |
+            flatpak-builder \
+              --force-clean
+              --repo=artifact
+              build-dir
+              flatpak/net.kanashimo.pengui.yml
+
+      - name: Bundle artifact
+        run: flatpak build-bundle artifact pengui.flatpak net.kanashimo.pengui
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pengui-unstable
+          path: pengui.flatpak
+          retention-days: 90
