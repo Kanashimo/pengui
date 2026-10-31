@@ -24,11 +24,11 @@
 - [Configuration](#configuration)
   - [Where is the config being stored?](#where-is-the-config-being-stored)
   - [Available properties](#available-properties)
-    - [`crop.border`](#cropborder)
-    - [`crop.glow`](#cropborder)
-    - [`ruler.border`](#rulerborder)
-    - [`screenshot`](#screenshot)
-  - [Full example of default config file](#full-example-of-default-config-file)
+    - [`[crop.border]`](#cropborder)
+    - [`[crop.glow]`](#cropborder)
+    - [`[ruler.border]`](#rulerborder)
+    - [`[screenshot]`](#screenshot)
+  - [Full example of working config file](#full-example-of-working-config-file)
 - [Building from source](#building-from-source)
 - [Contributing](#contributing)
 - [Acknowledgements](#acknowledgements)
@@ -116,7 +116,7 @@ The answer is as always, it depends. If you are running this application in the 
 |------------------|--------------------|---------------------------------------|
 | `save_location`  | `string` (path)    | `$XDG_PICTURES_DIR/PenguiScreenshots` |
 
-### Full example of default config file
+### Full example of working config file
 ```toml
 [crop.border]
 color = [ 90, 200, 255 ]
