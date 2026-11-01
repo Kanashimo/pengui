@@ -40,7 +40,7 @@
 ## Features and tools
 - Taking and cropping screenshots
 - Support for both Wayland and X11
-- Ruler with axis alignment (<kbd>Shift</kbd>)
+- Ruler with axis alignment support (<kbd>Shift</kbd>)
 - Pipette 
 
 ## What's the difference compared to other screenshot applications?
@@ -57,16 +57,16 @@ Paste this command into your terminal:
 wget -O - https://pengui.kanashimo.net/install.sh | sh
 ```
 
-Alternatively, if you dont't trust the first source or it just doesn't work, you can download the script directly form the repository:
+Alternatively, if you don't trust the first source or it just doesn't work, you can download the script directly form the repository:
 ```bash
 wget -O - https://raw.githubusercontent.com/kanashimo/pengui/refs/heads/main/install.sh | sh
 ```
 
-After installation, you can assign system shortcut to pengui for launching it with for e.g. <kbd>Meta+Shift+S</kbd> or <kbd>PrntScr</kbd> in your system's settings.
+After installation, you can assign a system shortcut to pengui for launching it with something like <kbd>Meta+Shift+S</kbd> or <kbd>PrntScr</kbd> in your system settings.
 
 ### Manual Installation
-1. Download latest Flatpak bundle from [releases page](https://github.com/Kanashimo/pengui/releases).
-2. Add Flathub repository to your user.
+1. Download the latest Flatpak bundle from [releases page](https://github.com/Kanashimo/pengui/releases).
+2. Add the Flathub repository to your user.
 ```bash
 flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 ```
@@ -80,7 +80,7 @@ If you don't have GNOME runtime installed and for some reason it wasn't installe
 flatpak install --user flathub org.gnome.Platform//51
 ```
 
-Same as in automatic installation, you can now assign system shortcut to pengui for launching it with for e.g. <kbd>Meta+Shift+S</kbd> or <kbd>PrntScr</kbd> in your system's settings.
+Same as in automatic installation, you can now assign system shortcut to pengui for launching it with for something like <kbd>Meta+Shift+S</kbd> or <kbd>PrntScr</kbd> in your system's settings.
 
 ### How to uninstall? 
 To uninstall pengui, use `flatpak uninstall` with `--user` flag.
@@ -151,7 +151,7 @@ meson setup build
 meson compile -C build
 ```
 
-After building you can run `meson install -C build` to install the binary, although it isn't recommended because pengui is intended to be a Flatpak application, so this option is never tested. Use at your own risk.
+After building you can run `meson install -C build` to install the binary, although it isn't recommended because pengui is intended to be a Flatpak application, so this option has been never tested. Use at your own risk.
 
 ### Building pengui as a Flatpak application
 ```bash
